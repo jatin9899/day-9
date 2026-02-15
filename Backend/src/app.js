@@ -6,9 +6,14 @@ const express = require("express");
 const noteModel = require("./models/note.model");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 
 app.use(express.json());
 app.use(cors());
+
+
+// http://localhost:3000/assets/index-CI0PxkSQ.js
+app.use(express.static("./public"))
 
 
 app.post("/api/notes", async(req, res) => {
@@ -99,5 +104,11 @@ app.patch("/api/notes/:index", async(req, res) => {
         note
     })
 });
+
+// console.log(__dirname)
+
+// app.use('*name',(req, res) => {
+//    res.sendFile(path.join(__dirname,"..", "public/index.html"))
+// })
 
 module.exports = app;//  server start karna
