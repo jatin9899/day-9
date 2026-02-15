@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.static("./public"))
 
 
-app.post("https://day-9-0v30.onrender.com/api/notes", async(req, res) => {
+app.post("/api/notes", async(req, res) => {
     console.log(req.body)
     const {title, description} = req.body;
 
@@ -31,7 +31,7 @@ app.post("https://day-9-0v30.onrender.com/api/notes", async(req, res) => {
     })
 })
 
-app.get("https://day-9-0v30.onrender.com/api/notes", async(req, res) => {
+app.get("/api/notes", async(req, res) => {
     const notes = await noteModel.find();
 
     res.status(200).json({
@@ -75,7 +75,7 @@ app.get("https://day-9-0v30.onrender.com/api/notes", async(req, res) => {
 //     })
 // })
 
-app.delete("https://day-9-0v30.onrender.com/api/notes/:index", async(req, res) => {
+app.delete("/api/notes/:index", async(req, res) => {
     const note = await noteModel.findByIdAndDelete(req.params.index);
 
     if (!note) {
@@ -90,7 +90,7 @@ app.delete("https://day-9-0v30.onrender.com/api/notes/:index", async(req, res) =
 });
 
 
-app.patch("https://day-9-0v30.onrender.com/api/notes/:index", async(req, res) => {
+app.patch("/api/notes/:index", async(req, res) => {
     const note = await noteModel.findByIdAndUpdate(req.params.index, req.body, {new: true});
 
     if (!note) {
